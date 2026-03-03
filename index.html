@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <title>挚爱香气名录｜集体香气记忆库</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    /* ====== 模式说明 ======
+       本页面支持两种使用情境：
+       1. 展厅模式（kiosk）：界面克制、无滚动、偏沉浸
+       2. 官网模式（archive）：内容完整、可浏览
+       通过在 <body> 上添加 class="kiosk" 或 "archive" 控制
+    ===================== */
+
+    :root {
+      --bg: #f6f4ef;
+      --ink: #2b2b2b;
+      --soft: #c9bfa7;
+      --accent: #b89b5e; /* 暖金色 */
+      --card: #ffffff;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Noto Serif SC", "Source Han Serif SC", "Songti SC", serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.7;
+    }
+
+    header {
+      padding: 3rem 1.5rem 2rem;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 2rem;
+      letter-spacing: 0.1em;
+      margin-bottom: 0.5rem;
+    }
+
+    header p {
+      max-width: 720px;
+      margin: 0 auto;
+      font-size: 1rem;
+      color: #555;
+    }
+
+    main {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+      max-width: 900px;
+      margin: 0 auto 4rem;
+      padding: 0 1.5rem;
+    }
+
+    section {
+      background: var(--card);
+      border-radius: 16px;
+      padding: 2rem;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+    }
+
+    section h2 {
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+      letter-spacing: 0.05em;
+    }
+
+    label {
+      display: block;
+      margin-top: 1rem;
+      font-size: 0.9rem;
+      color: #444;
+    }
+
+    input, textarea, select {
+      width: 100%;
+      margin-top: 0.4rem;
+      padding: 0.6rem 0.7rem;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+      font-family: inherit;
+      font-size: 0.95rem;
+    }
+
+    textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    button {
+      margin-top: 1.5rem;
+      padding: 0.7rem 1.5rem;
+      border: none;
+      border-radius: 999px;
+      background: var(--accent);
+      color: white;
+      font-size: 0.95rem;
+      cursor: pointer;
+    }
+
+    button:hover {
+      opacity: 0.9;
+    }
+
+    .note {
+      font-size: 0.8rem;
+      color: #777;
+      margin-top: 0.8rem;
+    }
+
+    .archive {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .card {
+      border: 1px solid #eee;
+      border-radius: 14px;
+      padding: 1.2rem;
+      background: #fafafa;
+    }
+
+    .card h3 {
+      font-size: 1rem;
+      margin-bottom: 0.5rem;
+      color: var(--accent);
+    }
+
+    .card p {
+      font-size: 0.85rem;
+      color: #333;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 0.75rem;
+      color: #888;
+      padding: 2rem 1rem 3rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>挚爱香气名录</h1>
+    <p>
+      在气味中，时间被保存。
+      <br />
+      这里收集的是你在展览中最心仪的香气，以及那些来自个人记忆深处、
+      无法被完全复现却始终萦绕的味道。
+    </p>
+  </header>
+
+  <main>
+
+    <!-- 香气提交区 -->
+    <section>
+      <h2>留下你的香气记忆</h2>
+
+    <form name="aroma" method="POST" 
+               data-netlify="true" 
+               netlify-honeypot="bot-field"
+               action="thank-you.html">
+
+      <input type="hidden" name="form-name" value="aroma" />
+
+      <p hidden>
+       <label>Don't fill this out: 
+         <input name="bot-field" />
+       </label>
+      </p>
+          你最心仪的香气类型（可选）
+          <select name="aroma_type">
+            <option>—— 请选择 ——</option>
+            <option>花香</option>
+            <option>果香</option>
+            <option>草木/自然气息</option>
+            <option>烟熏/焚香</option>
+            <option>香沁雅事——中国展厅的那种气味</option>
+            <option>香通神明——埃及展厅的那种气味</option>
+            <option>香融现生——希腊罗马展厅的那种气味</option>
+            <option>阳光/空气/抽象气味</option>
+            <option>无法分类的记忆气味</option>
+          </select>
+        </label>
+
+        <label>
+          如果这是你自己调配的香气，可以为它取一个名字
+          <input type="text" name="aroma_name" placeholder="例如：午后阳台 / 夏天的背影" />
+        </label>
+
+        <label>
+          这股气味让你想起了什么？
+          <textarea placeholder="可以是一段记忆、一个场景、一种情绪，或一个无法说清的瞬间……" name="memory_text"></textarea>
+        </label>
+
+        <button type="submit">存入香气记忆库</button>
+
+        <div class="note">
+          所有内容将以匿名方式存入本次展览的数字香气档案，
+          部分片段将被随机呈现在展区中。
+        </div>
+      </form>
+    </section>
+
+    <!-- 记忆展示区 -->
+    <section>
+      <h2>部分香气记忆（节选）</h2>
+
+      <div class="archive">
+        <div class="card">
+          <h3>「晒过太阳的棉被」</h3>
+          <p>
+            像冬天的午后，房间里没有人，
+            但空气是暖的。
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>「青苹果」</h3>
+          <p>
+            高中放学路上买的第一瓶香水，
+            有点酸，也有点莽撞。
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>「雨后泥土」</h3>
+          <p>
+            下雨停了以后，
+            世界重新开始呼吸。
+          </p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    挚爱香气名录 · 气味 × 记忆 × 集体档案
+  </footer>
+
+ 
+</body>
+</html>
+
