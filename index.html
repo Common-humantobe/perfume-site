@@ -246,6 +246,41 @@
     挚爱香气名录 · 气味 × 记忆 × 集体档案
   </footer>
 
+<script>
+  async function loadAromaMemories() {
+    try {
+      const response = await fetch("/.netlify/functions/get-aroma");
+      const submissions = await response.json();
+
+      const archive = document.querySelector(".archive");
+
+      // 清空示例卡片
+      archive.innerHTML = "";
+
+      submissions.forEach(item => {
+        const data = item.data;
+
+        const card = document.createElement("div");
+        card.className = "card";
+
+        const title = document.createElement("h3");
+        title.textContent = data.aroma_name || data.aroma_type || "未命名香气";
+
+        const text = document.createElement("p");
+        text.textContent = data.memory_text || "";
+
+        card.appendChild(title);
+        card.appendChild(text);
+        archive.appendChild(card);
+      });
+
+    } catch (error) {
+      console.error("读取香气数据失败：", error);
+    }
+  }
+
+  loadAromaMemories();
+</script>
  
 </body>
 </html>
