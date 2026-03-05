@@ -113,7 +113,7 @@
 
      .archive {
        position: relative;
-       height: 420px;
+       height: 480px;
        overflow: hidden;
     }
 
@@ -121,7 +121,8 @@
       border: 1px solid #eee;
       border-radius: 14px;
       padding: 1.2rem;
-      background: #fafafa;
+      background: rgba(255,255,255,0.85);
+      backdrop-filter: blur(4px);
     }
 
     .fade-card {
@@ -130,6 +131,7 @@
       opacity: 0;
       transform: translateY(10px);
       animation: aromaFloat 20s ease-in-out forwards;
+      pointer-events: none;
     }
 
     @keyframes aromaFloat {
@@ -246,7 +248,7 @@
       <h2>部分香气记忆（节选）</h2>
 
       <div class="archive">
-        <div class="card">
+        <div class="card fade-card">
           <h3>「晒过太阳的棉被」</h3>
           <p>
             像冬天的午后，房间里没有人，
