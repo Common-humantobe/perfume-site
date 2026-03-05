@@ -142,6 +142,18 @@
       color: #888;
       padding: 2rem 1rem 3rem;
     }
+
+    @keyframes fadeCycle {
+      0%   { opacity: 0; transform: translateY(10px); }
+      10%  { opacity: 1; transform: translateY(0); }
+      90%  { opacity: 1; }
+      100% { opacity: 0; transform: translateY(-10px); }
+     }
+
+     .fade-card {
+       animation: fadeCycle 20s ease-in-out forwards;
+     }
+
   </style>
 </head>
 <body>
