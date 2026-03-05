@@ -111,11 +111,10 @@
       margin-top: 0.8rem;
     }
 
-    .archive {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-      gap: 1.5rem;
-      margin-top: 1.5rem;
+     .archive {
+       position: relative;
+       height: 420px;
+       overflow: hidden;
     }
 
     .card {
@@ -123,6 +122,37 @@
       border-radius: 14px;
       padding: 1.2rem;
       background: #fafafa;
+    }
+
+    .fade-card {
+      position: absolute;
+      max-width: 260px;
+      opacity: 0;
+      transform: translateY(10px);
+      animation: aromaFloat 20s ease-in-out forwards;
+    }
+
+    @keyframes aromaFloat {
+
+         0% {
+              opacity: 0;
+              transform: translateY(20px);
+         }
+
+         10% {
+              opacity: 1;
+              transform: translateY(0);
+         }
+
+          80% {
+              opacity: 1;
+         }
+
+          100% {
+              opacity: 0;
+              transform: translateY(-20px);
+         }
+
     }
 
     .card h3 {
@@ -143,16 +173,6 @@
       padding: 2rem 1rem 3rem;
     }
 
-    @keyframes fadeCycle {
-      0%   { opacity: 0; transform: translateY(10px); }
-      10%  { opacity: 1; transform: translateY(0); }
-      90%  { opacity: 1; }
-      100% { opacity: 0; transform: translateY(-10px); }
-     }
-
-     .fade-card {
-       animation: fadeCycle 20s ease-in-out forwards;
-     }
 
   </style>
 </head>
@@ -274,6 +294,9 @@
 
         const card = document.createElement("div");
         card.className = "card";
+        
+        card.style.left = Math.random() * 70 + "%";
+        card.style.top = Math.random() * 70 + "%";
 
         const title = document.createElement("h3");
         title.textContent = data.aroma_name || data.aroma_type || "未命名香气";
