@@ -281,6 +281,7 @@
   </footer>
 
 <script>
+  let activeCards = 0;
   async function loadAromaMemories() {
     try {
       const response = await fetch("/.netlify/functions/get-aroma");
@@ -308,11 +309,8 @@
 
         const zone = zones[Math.floor(Math.random()*zones.length)];
 
-        const offsetX = Math.random()*10 - 5;
-        const offsetY = Math.random()*10 - 5;
-
-        card.style.left = (zone.left + offsetX) + "%";
-        card.style.top = (zone.top + offsetY) + "%";
+        card.style.left = zone.left + "%";
+        card.style.top = zone.top + "%";
         card.style.animationDelay = Math.random() * 10 + "s";
 
         const title = document.createElement("h3");
